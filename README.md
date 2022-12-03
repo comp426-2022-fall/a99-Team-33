@@ -1,5 +1,13 @@
 # a99 Final Project
 
+## IMPORTANT CHANGES MADE
+- This repo cannot be directly clone and commit. This repo needs to fork and make pull-request, as Professor required.
+- I made it similar to a04 assignment. If you would like to quickly getting started, please check out documentation under /docs/ folder.
+  - documentation.md can be directly viewed on github.
+  - documentation-webpage.html has a better coloring and view. It can be viewed by pasting the current browser url into https://htmlpreview.github.io/
+- The name for this project is still unsure, so I name it as "Covid Case Checker". If there is a better naming, for free to tell me and I will change the documentation.
+- The documentation for the packages that we used are put in the coding files as comment.
+
 ## Summary 
 
 COMP426 final project template boilerplate.

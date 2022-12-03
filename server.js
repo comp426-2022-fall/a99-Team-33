@@ -67,6 +67,7 @@ app.get('/app/global/', (req, res) => {
             res.send(JSON.stringify(result, null, 4));
         } else {
             let dt = new Date();
+            
             res.send(`
             **Covid Global Data Result**
             Request Time: ${dt.toUTCString()}
@@ -94,6 +95,7 @@ app.get('/app/global/yesterday/', (req, res) => {
             res.send(JSON.stringify(result, null, 4));
         } else {
             let dt = new Date();
+            
             res.send(`
             **Covid Global Data Result Yesterday**
             Request Time: ${dt.toUTCString()}
@@ -128,13 +130,20 @@ app.get('/app/country/', (req, res) => {
                 */
 
                 res.status(400);
-                res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n`)
+                
+                if (args.j) {
+                    res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n${JSON.stringify(result, null, 4)}`)
+                } else {
+                    res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n`)
+                }
+            
             } else {
                 res.status(200);
                 if (args.j) {
                     res.send(JSON.stringify(result, null, 4));
                 } else {
                     let dt = new Date();
+                    
                     res.send(`
                     **Covid Data Result of ${args.c}**
                     Request Time: ${dt.toUTCString()}
@@ -171,13 +180,20 @@ app.get('/app/country/yesterday/', (req, res) => {
                 */
 
                 res.status(400);
-                res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n`)
+                
+                if (args.j) {
+                    res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n${JSON.stringify(result, null, 4)}`)
+                } else {
+                    res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n`)
+                }
+            
             } else {
                 res.status(200);
                 if (args.j) {
                     res.send(JSON.stringify(result, null, 4));
                 } else {
                     let dt = new Date();
+                    
                     res.send(`
                     **Covid Data Result Yesterday of ${args.c}**
                     Request Time: ${dt.toUTCString()}
@@ -214,13 +230,20 @@ app.get('/app/state/', (req, res) => {
                 */
 
                 res.status(400);
-                res.send(`400 Bad Request\nState \"${args.s}\" in United States not found or doesn't have any cases.\n`)
+                
+                if (args.j) {
+                    res.send(`400 Bad Request\nState \"${args.s}\" in United States not found or doesn't have any cases.\n${JSON.stringify(result, null, 4)}`)
+                } else {
+                    res.send(`400 Bad Request\nState \"${args.s}\" in United States not found or doesn't have any cases.\n`)
+                }
+            
             } else {
                 res.status(200);
                 if (args.j) {
                     res.send(JSON.stringify(result, null, 4));
                 } else {
                     let dt = new Date();
+                    
                     res.send(`
                     **Covid Data Result of ${args.s} in United States**
                     Request Time: ${dt.toUTCString()}
@@ -238,7 +261,7 @@ app.get('/app/state/', (req, res) => {
     }
 })
 
-app.get('/app/state/yesterday', (req, res) => {
+app.get('/app/state/yesterday/', (req, res) => {
     /**
      * /app/state/yesterday endpoint - Specified state (in United States) Data Yesterday for Covid
      */
@@ -256,13 +279,20 @@ app.get('/app/state/yesterday', (req, res) => {
                 */
 
                 res.status(400);
-                res.send(`400 Bad Request\nState \"${args.s}\" in United States not found or doesn't have any cases.\n`)
+                
+                if (args.j) {
+                    res.send(`400 Bad Request\nState \"${args.s}\" in United States not found or doesn't have any cases.\n${JSON.stringify(result, null, 4)}`)
+                } else {
+                    res.send(`400 Bad Request\nState \"${args.s}\" in United States not found or doesn't have any cases.\n`)
+                }
+            
             } else {
                 res.status(200);
                 if (args.j) {
                     res.send(JSON.stringify(result, null, 4));
                 } else {
                     let dt = new Date();
+                    
                     res.send(`
                     **Covid Data Result Yesterday of ${args.s} in United States**
                     Request Time: ${dt.toUTCString()}
@@ -280,7 +310,7 @@ app.get('/app/state/yesterday', (req, res) => {
     }
 })
 
-app.get('/app/global/historical', (req, res) => {
+app.get('/app/global/historical/', (req, res) => {
     /**
      * /app/global/historical/ endpoint - Historical Data Based on Global Timeline
      * Historical timeline is customizable (arg.d for days)
@@ -301,28 +331,7 @@ app.get('/app/global/historical', (req, res) => {
     })
 })
 
-app.get('/app/global/historical', (req, res) => {
-    /**
-     * /app/global/historical/ endpoint - Historical Data Based on Global Timeline
-     * Historical timeline is customizable (arg.d for days)
-     */
-
-    let pastDays = args.d && args.d <= 90 ? args.d : 30 // default as 30 days
-    globalHistorical(pastDays).then(result => {
-        res.status(200);
-        let warning = args.d && pastDays < args.d ? "WARNING: The maximum days supported currently is 90\n" : "";  // Set a maximum days for historical data otherwise too long for json data.
-        if (args.j) {
-            res.send(warning + JSON.stringify(result, null, 4));
-        } else {
-            let dt = new Date();
-            res.send(warning + `**Historical Covid Data (${pastDays} days)**\nRequest Time: ${dt.toUTCString()}\n`
-            + JSON.stringify(result, null, 4)
-            )
-        }
-    })
-})
-
-app.get('/app/country/historical', (req, res) => {
+app.get('/app/country/historical/', (req, res) => {
     /**
      * /app/country/historical/ endpoint - Historical Data Based on specified country Timeline
      * Historical timeline is customizable (arg.d for days)
@@ -330,7 +339,7 @@ app.get('/app/country/historical', (req, res) => {
    
     if (!args.c) {
         res.status(400);
-        res.send("400 Bad Request\nThere is no specified country/region found in your input.\n")
+        res.send("400 Bad Request\nThere is no specified country/region found in your input.\n")   
     } else {
         let pastDays = args.d && args.d <= 90 ? args.d : 30 // default as 30 days
         countryHistorical(args.c, pastDays).then(result => {
@@ -341,7 +350,13 @@ app.get('/app/country/historical', (req, res) => {
                 */
 
                 res.status(400);
-                res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n`)
+
+                if (args.j) {
+                    res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n${JSON.stringify(result, null, 4)}`)
+                } else {
+                    res.send(`400 Bad Request\nCountry/region \"${args.c}\" not found or doesn't have any cases.\n`)
+                }
+                
             } else {
                 res.status(200);
                 let warning = args.d && pastDays < args.d ? "WARNING: The maximum days supported currently is 90\n" : "";  // Set a maximum days for historical data otherwise too long for json data.
@@ -349,7 +364,7 @@ app.get('/app/country/historical', (req, res) => {
                     res.send(warning + JSON.stringify(result, null, 4));
                 } else {
                     let dt = new Date();
-                    res.send(warning + `**Historical Covid Data (${pastDays} days)**\nRequest Time: ${dt.toUTCString()}\n`
+                    res.send(warning + `**Historical Covid Data of ${args.c} (${pastDays} days)**\nRequest Time: ${dt.toUTCString()}\n`
                     + JSON.stringify(result, null, 4)
                     )
                 }

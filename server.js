@@ -331,27 +331,6 @@ app.get('/app/global/historical/', (req, res) => {
     })
 })
 
-app.get('/app/global/historical', (req, res) => {
-    /**
-     * /app/global/historical/ endpoint - Historical Data Based on Global Timeline
-     * Historical timeline is customizable (arg.d for days)
-     */
-
-    let pastDays = args.d && args.d <= 90 ? args.d : 30 // default as 30 days
-    globalHistorical(pastDays).then(result => {
-        res.status(200);
-        let warning = args.d && pastDays < args.d ? "WARNING: The maximum days supported currently is 90\n" : "";  // Set a maximum days for historical data otherwise too long for json data.
-        if (args.j) {
-            res.send(warning + JSON.stringify(result, null, 4));
-        } else {
-            let dt = new Date();
-            res.send(warning + `**Historical Covid Data (${pastDays} days)**\nRequest Time: ${dt.toUTCString()}\n`
-            + JSON.stringify(result, null, 4)
-            )
-        }
-    })
-})
-
 app.get('/app/country/historical/', (req, res) => {
     /**
      * /app/country/historical/ endpoint - Historical Data Based on specified country Timeline

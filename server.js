@@ -92,9 +92,9 @@ app.get('/app/global/yesterday/', (req, res) => {
     /**
      * /app/global/yesterday/ endpoint - All Yesterday Global Data For Covid
      */
-
-    res.status(200);
+    
     globalYesterdayAll().then(result => {
+        res.status(200);
         if (args.j) {
             res.send(JSON.stringify(result, null, 4));
         } else {

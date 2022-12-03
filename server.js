@@ -60,9 +60,9 @@ app.get('/app/global/', (req, res) => {
     /**
      * /app/global/ endpoint - All Global Data For Covid
      */
-
-    res.status(200);
+    
     globalAll().then(result => {
+        res.status(200);
         if (args.j) {
             res.send(JSON.stringify(result, null, 4));
         } else {
@@ -82,15 +82,19 @@ app.get('/app/global/', (req, res) => {
             `)
         }
     })
+    .catch(error => {
+        res.status(500)
+        res.send(`500 Internal Server Error\nThere is an error occured in the server when extracting data. Please try again later.\nError Log: ${error}`)
+    })
 })
 
 app.get('/app/global/yesterday/', (req, res) => {
     /**
      * /app/global/yesterday/ endpoint - All Yesterday Global Data For Covid
      */
-
-    res.status(200);
+    
     globalYesterdayAll().then(result => {
+        res.status(200);
         if (args.j) {
             res.send(JSON.stringify(result, null, 4));
         } else {
@@ -108,7 +112,11 @@ app.get('/app/global/yesterday/', (req, res) => {
             Yesterday Recovered: ${result['todayRecovered']}
             Total Affected Countries: ${result['affectedCountries']}
             `)
-        }
+        } 
+    })
+    .catch(error => {
+        res.status(500)
+        res.send(`500 Internal Server Error\nThere is an error occured in the server when extracting data. Please try again later.\nError Log: ${error}`)
     })
 })
 
@@ -158,6 +166,10 @@ app.get('/app/country/', (req, res) => {
                     `)
                 }
             }
+        })
+        .catch(error => {
+            res.status(500)
+            res.send(`500 Internal Server Error\nThere is an error occured in the server when extracting data. Please try again later.\nError Log: ${error}`)
         })
     }
 })
@@ -209,6 +221,10 @@ app.get('/app/country/yesterday/', (req, res) => {
                 }
             }
         })
+        .catch(error => {
+            res.status(500)
+            res.send(`500 Internal Server Error\nThere is an error occured in the server when extracting data. Please try again later.\nError Log: ${error}`)
+        })
     }
 })
 
@@ -257,6 +273,10 @@ app.get('/app/state/', (req, res) => {
                     `)
                 }
             }
+        })
+        .catch(error => {
+            res.status(500)
+            res.send(`500 Internal Server Error\nThere is an error occured in the server when extracting data. Please try again later.\nError Log: ${error}`)
         })
     }
 })
@@ -307,6 +327,10 @@ app.get('/app/state/yesterday/', (req, res) => {
                 }
             }
         })
+        .catch(error => {
+            res.status(500)
+            res.send(`500 Internal Server Error\nThere is an error occured in the server when extracting data. Please try again later.\nError Log: ${error}`)
+        })
     }
 })
 
@@ -328,6 +352,10 @@ app.get('/app/global/historical/', (req, res) => {
             + JSON.stringify(result, null, 4)
             )
         }
+    })
+    .catch(error => {
+        res.status(500)
+        res.send(`500 Internal Server Error\nThere is an error occured in the server when extracting data. Please try again later.\nError Log: ${error}`)
     })
 })
 
@@ -369,6 +397,10 @@ app.get('/app/country/historical/', (req, res) => {
                     )
                 }
             }
+        })
+        .catch(error => {
+            res.status(500)
+            res.send(`500 Internal Server Error\nThere is an error occured in the server when extracting data. Please try again later.\nError Log: ${error}`)
         })
     }
 })

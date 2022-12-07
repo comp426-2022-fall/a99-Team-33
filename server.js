@@ -22,7 +22,7 @@ const args = minimist(process.argv.slice(2));
 const port = args.port || 5000
 
 // timestamp difference helper
-function timestampFormat(currentTs, updatedTs) {
+async function timestampFormat(currentTs, updatedTs) {
     /**
      * CurrentTs: the current request UTC timestamp
      * updatedTs: the last updated UTC timestamp of the covid API
@@ -48,7 +48,7 @@ function timestampFormat(currentTs, updatedTs) {
 }
 
 // set up endpoints
-app.get('/app/', (req, res) => {
+app.get('/app/', async (req, res) => {
     /**
      * /app/ endpoint - Default Status Test
      */
@@ -56,7 +56,7 @@ app.get('/app/', (req, res) => {
     res.send('200 OK');
 })
 
-app.get('/app/global/', (req, res) => {
+app.get('/app/global/', async (req, res) => {
     /**
      * /app/global/ endpoint - All Global Data For Covid
      */
@@ -88,7 +88,7 @@ app.get('/app/global/', (req, res) => {
     })
 })
 
-app.get('/app/global/yesterday/', (req, res) => {
+app.get('/app/global/yesterday/', async (req, res) => {
     /**
      * /app/global/yesterday/ endpoint - All Yesterday Global Data For Covid
      */
@@ -120,7 +120,7 @@ app.get('/app/global/yesterday/', (req, res) => {
     })
 })
 
-app.get('/app/country/', (req, res) => {
+app.get('/app/country/', async (req, res) => {
     /**
      * /app/country/ endpoint - Specified Country Data for Covid
      */
@@ -174,7 +174,7 @@ app.get('/app/country/', (req, res) => {
     }
 })
 
-app.get('/app/country/yesterday/', (req, res) => {
+app.get('/app/country/yesterday/', async (req, res) => {
     /**
      * /app/country/yesterday/ endpoint - Specified Country Yesterday Data for Covid
      */
@@ -228,7 +228,7 @@ app.get('/app/country/yesterday/', (req, res) => {
     }
 })
 
-app.get('/app/state/', (req, res) => {
+app.get('/app/state/', async (req, res) => {
     /**
      * /app/state endpoint - Specified state (in United States) Data for Covid
      */
@@ -281,7 +281,7 @@ app.get('/app/state/', (req, res) => {
     }
 })
 
-app.get('/app/state/yesterday/', (req, res) => {
+app.get('/app/state/yesterday/', async (req, res) => {
     /**
      * /app/state/yesterday endpoint - Specified state (in United States) Data Yesterday for Covid
      */
@@ -334,7 +334,7 @@ app.get('/app/state/yesterday/', (req, res) => {
     }
 })
 
-app.get('/app/global/historical/', (req, res) => {
+app.get('/app/global/historical/', async (req, res) => {
     /**
      * /app/global/historical/ endpoint - Historical Data Based on Global Timeline
      * Historical timeline is customizable (arg.d for days)
@@ -359,7 +359,7 @@ app.get('/app/global/historical/', (req, res) => {
     })
 })
 
-app.get('/app/country/historical/', (req, res) => {
+app.get('/app/country/historical/', async (req, res) => {
     /**
      * /app/country/historical/ endpoint - Historical Data Based on specified country Timeline
      * Historical timeline is customizable (arg.d for days)
@@ -405,7 +405,7 @@ app.get('/app/country/historical/', (req, res) => {
     }
 })
 
-app.get('*', (req, res) => {
+app.get('*', async (req, res) => {
     /**
      * all non-existent endpoints should return 404.
      */

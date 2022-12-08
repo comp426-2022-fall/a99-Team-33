@@ -28,7 +28,7 @@ const port = args.port || 5000
 var sqlUtil = sql_operations;
 
 // timestamp difference helper
-async function timestampFormat(currentTs, updatedTs) {
+function timestampFormat(currentTs, updatedTs) {
     /**
      * CurrentTs: the current request UTC timestamp
      * updatedTs: the last updated UTC timestamp of the covid API

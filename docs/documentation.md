@@ -61,7 +61,13 @@ server.js
 
 - db folder: folder for databases.
 
+## Project Roles
 
+- Back end lead: Suihan Gao (TimG233)
+
+- Database lead: Suihan Gao (TimG233)
+
+- Design/structure lead: Suihan Gao (TimG233)
 
 ## Planning Timetable
 
@@ -69,14 +75,12 @@ Timetable of important timepoint of the development of this project.
 
 | Time         | Development                                                                                                                                                                                           |
 | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `12/08/2022` | **Group decision:** Record demonstration video. <br>**TimG233:** Cleanup useless comment and code \| Updated documentation                                                                            |
+| `12/08/2022` | **Group decision:** Record demonstration video. <br> **TimG233:** Cleanup useless comment and code \| Updated documentation <br> **Lukeschmidt:** Trim the demonstration video                        |
 | `12/07/2022` | **TimG233:** Remove mongodb and changed to sqlite3 \| Added logging to database \| Added log related endpoints                                                                                        |
 | `12/06/2022` | **Group decision:** talk about project and decide when to record demonstration video. <br>**TimG233:** remove unused packages \| Added mongodb setup \| change server.js endpoint functions to async. |
 | `12/03/2022` | **TimG233:** Added documentation folder and files \| Added error handling in server.js \| remove duplicate codes.                                                                                     |
 | `12/02/2022` | **TimG233:** Setup backend server \| setting up the server to connect to a workable covid api. (server and lib folder structure)                                                                      |
 | `12/01/2022` | **Group decision:** Decide to do a project linked with covid case. <br> **TimG233:** Update Readme.md for project walkthrough. Starting fork and pull request.                                        |
-
-  
 
 # Installation
 

@@ -1,4 +1,5 @@
-./docs/documentation4html.md
+/docs/documentation4html.md
+/lib.db-operations.js
 
 # Logs
 logs

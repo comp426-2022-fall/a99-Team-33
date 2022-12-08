@@ -1251,15 +1251,81 @@ pre[class*="language-"] {
   <article class="markdown-body"><h1 class="atx" id="covid-case-checker">Covid Case Checker</h1>
 <hr>
 <p>A NodeJS/Express API that checks covid cases based on different scales.</p>
+<p>Using async/await functions for API endpoints and sqlite3 as log database.</p>
 <p>This was developed for Team-33 final project for UNC COMP 426 Fall 2022</p>
-<h1 class="atx" id=""></h1>
-<h1 class="atx" id="data-source">Data Source</h1>
+<div class="toc-container"><p class="toc-title">Table of Contents</p><ul class="toc-list"><li><span><a class="toc-h1" href="#covid-case-checker">Covid Case Checker</a><span class="dots"></span></span></li><li><span><a class="toc-h1" href="#data-source">Data Source</a><span class="dots"></span></span></li><li><span><a class="toc-h1" href="#project-planner">Project Planner</a><span class="dots"></span></span><ul><li><span><a class="toc-h2" href="#project-structure">Project Structure</a><span class="dots"></span></span></li><li><span><a class="toc-h2" href="#planning-timetable">Planning Timetable</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h1" href="#installation">Installation</a><span class="dots"></span></span></li><li><span><a class="toc-h1" href="#api-documentation">API Documentation</a><span class="dots"></span></span><ul><li><span><a class="toc-h2" href="#endpoints">Endpoints</a><span class="dots"></span></span><ul><li><span><a class="toc-h3" href="#app">/app/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output">Expected Output</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#appglobal">/app/global/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-1">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#appglobalyesterday">/app/global/yesterday/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-2">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example-1">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#appcountry">/app/country/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-3">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example-2">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#appcountryyesterday">/app/country/yesterday/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-4">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example-3">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#appstate">/app/state/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-5">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example-4">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#appstateyesterday">/app/state/yesterday/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-6">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example-5">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#appglobalhistorical">/app/global/historical/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-7">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example-6">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#appcountryhistorical">/app/country/historical/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-8">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example-7">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#applogs">/app/logs/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-9">Response body</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#expected-output-example-8">Expected Output (Example)</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#applogsclear">/app/logs/clear/</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#response-body-10">Response body</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h3" href="#expected-output-1">Expected Output</a><span class="dots"></span></span></li></ul></li><li><span><a class="toc-h2" href="#tests">Tests</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#an-example-of-terminal-by-calling-appcountryhistorical-api-endpoints">An example of terminal by calling `/app/country/historical` API endpoints</a><span class="dots"></span></span></li><li><span><a class="toc-h3" href="#json-result">JSON Result</a><span class="dots"></span></span><ul><li><span><a class="toc-h4" href="#success">Success</a><span class="dots"></span></span></li><li><span><a class="toc-h4" href="#error">Error</a><span class="dots"></span></span></li></ul></li></ul></li><li><span><a class="toc-h2" href="#database">Database</a><span class="dots"></span></span><ul><li><span><a class="toc-h3" href="#structure-of-the-table-for-log">Structure of the table for log</a><span class="dots"></span></span></li><li><span><a class="toc-h3" href="#how-database-works">How database works</a><span class="dots"></span></span></li></ul></li></ul></li><li><span><a class="toc-h1" href="#projects-link">Projects Link</a><span class="dots"></span></span></li></ul></div><h1 class="atx" id="data-source">Data Source</h1>
 <hr>
 <p>Data source for this project is from disease.node.js wrapper developed by the disease.sh.</p>
 <p>Disease.sh Documentation: <a href="https://disease.sh/docs/#/COVID-19%3A%20Worldometers/get_v3_covid_19_all">Documentation</a></p>
 <p>Disease.sh NodeJS Wrapper Documentation: <a href="https://www.npmjs.com/package/novelcovid/v/3.0.2">Documentation</a></p>
 <p>Disease.sh Github Project: <a href="https://github.com/disease-sh/API">Project</a></p>
-<h1 class="atx" id="-1"></h1>
+<h1 class="atx" id="project-planner">Project Planner</h1>
+<hr>
+<p>This section shows how this project is decided, and how the project is implemented by different steps throughout the week.</p>
+<h2 class="atx" id="project-structure">Project Structure</h2>
+<p>the structure image (by code-block) of this project</p>
+<pre><code class="fenced-code-block">.
+|- lib
+    |- covid-api.js
+&nbsp;&nbsp;&nbsp;&nbsp;|- sql-operations.js
+|
+|- docs
+    |- documentation.md
+    |- docuementation-webpage.html
+|
+|- db
+    |- logs.db
+|
+.gitignore
+LICENSE
+package.json
+package-lock.json
+README.md
+server.js</code></pre>
+<ul>
+<li><p>server.js: server file</p>
+</li>
+<li><p>lib folder: all exportable functions for server to use.</p>
+</li>
+<li><p>docs folder: documentation folder. One for markdown file, another one for html webpage with css and table of contents.</p>
+</li>
+<li><p>db folder: folder for databases.</p>
+</li>
+</ul>
+<h2 class="atx" id="planning-timetable">Planning Timetable</h2>
+<p>Timetable of important timepoint of the development of this project.</p>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Development</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>12/08/2022</code></td>
+<td><strong>Group decision:</strong> Record demonstration video. <br><strong>TimG233:</strong> Cleanup useless comment and code | Updated documentation</td>
+</tr>
+<tr>
+<td><code>12/07/2022</code></td>
+<td><strong>TimG233:</strong> Remove mongodb and changed to sqlite3 | Added logging to database | Added log related endpoints</td>
+</tr>
+<tr>
+<td><code>12/06/2022</code></td>
+<td><strong>Group decision:</strong> talk about project and decide when to record demonstration video. <br><strong>TimG233:</strong> remove unused packages | Added mongodb setup | change server.js endpoint functions to async.</td>
+</tr>
+<tr>
+<td><code>12/03/2022</code></td>
+<td><strong>TimG233:</strong> Added documentation folder and files | Added error handling in server.js | remove duplicate codes.</td>
+</tr>
+<tr>
+<td><code>12/02/2022</code></td>
+<td><strong>TimG233:</strong> Setup backend server | setting up the server to connect to a workable covid api. (server and lib folder structure)</td>
+</tr>
+<tr>
+<td><code>12/01/2022</code></td>
+<td><strong>Group decision:</strong> Decide to do a project linked with covid case. <br> <strong>TimG233:</strong> Update Readme.md for project walkthrough. Starting fork and pull request.</td>
+</tr>
+</tbody></table>
 <h1 class="atx" id="installation">Installation</h1>
 <hr>
 <ul>
@@ -1272,28 +1338,26 @@ $ <span class="token function">sudo</span> <span class="token function">apt</spa
 $ <span class="token function">node</span> -v
 $ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">npm</span></code></pre>
 </li>
-<li><p>Using NPM to install:</p>
+<li><p><strong>Using NPM to install dependencies</strong>:</p>
 <pre><code class="fenced-code-block language-shell">$ <span class="token function">npm</span> <span class="token function">install</span> novelcovid
 $ <span class="token function">npm</span> <span class="token function">install</span> minimist
-$ <span class="token function">npm</span> <span class="token function">install</span> express </code></pre>
+$ <span class="token function">npm</span> <span class="token function">install</span> express
+$ <span class="token function">npm</span> <span class="token function">install</span> better-sqlite3 </code></pre>
 </li>
 </ul>
-<h1 class="atx" id="-2"></h1>
 <h1 class="atx" id="api-documentation">API Documentation</h1>
 <hr>
 <h2 class="atx" id="endpoints">Endpoints</h2>
 <hr>
 <p>In this parts of documentation, all the endpoints of the server will be explained. The response body shows which <strong>API path</strong> you need to use. If you want to test it in terminal, you need more information to do this. Check out "<a href="#tests">tests</a>" section for more testing examples.</p>
 <p>In the explanations below, <code>${PORT}</code> means the port that the server runs.</p>
-<p>For all endpoints except <code>/app/</code>, the server supports <code>--j</code> for stringnify JSON result. If no <code>--j</code> provided, the result will be a nice and user-friendly formatted result by the server. To see the expected stringnify JSON result, check out <a href="#json-result">JSON Result</a></p>
-<h3 class="atx" id="-3"></h3>
+<p>For all endpoints except <code>/app/</code> and <code>/app/logs/</code>, the server supports <code>--j</code> for stringify JSON result. If no <code>--j</code> provided, the result will be a nice and user-friendly formatted result by the server. To see the expected stringify JSON result, check out <a href="#json-result">JSON Result</a></p>
 <h3 class="atx" id="app">/app/</h3>
 <p>It responds "200 OK".</p>
 <h4 class="atx" id="response-body">Response body</h4>
 <pre><code class="fenced-code-block language-shell"><span class="token function">curl</span> -s http://localhost:<span class="token variable">${PORT}</span>/app/</code></pre>
 <h4 class="atx" id="expected-output">Expected Output</h4>
 <pre><code class="fenced-code-block language-shell"><span class="token number">200</span> OK</code></pre>
-<h3 class="atx" id="-4"></h3>
 <h3 class="atx" id="appglobal">/app/global/</h3>
 <p>It responds all global data for covid.</p>
 <h4 class="atx" id="response-body-1">Response body</h4>
@@ -1309,7 +1373,6 @@ $ <span class="token function">npm</span> <span class="token function">install</
             Total Recovered: 626730709
             Today Recovered: 106687
             Total Affected Countries: 230</code></pre>
-<h3 class="atx" id="-5"></h3>
 <h3 class="atx" id="appglobalyesterday">/app/global/yesterday/</h3>
 <p>It responds all <u>yesterday</u> global data for covid.</p>
 <h4 class="atx" id="response-body-2">Response body</h4>
@@ -1325,10 +1388,9 @@ $ <span class="token function">npm</span> <span class="token function">install</
             Total Recovered: 626624022
             Yesterday Recovered: 215417
             Total Affected Countries: 230</code></pre>
-<h3 class="atx" id="-6"></h3>
 <h3 class="atx" id="appcountry">/app/country/</h3>
-<p>It responds all current covid data for a specified country. </p>
-<p><strong>Required</strong>: Use <code>--c &lt;country&gt;</code> to specify a country </p>
+<p>It responds all current covid data for a specified country.</p>
+<p><strong>Required</strong>: Use <code>--c &lt;country&gt;</code> to specify a country</p>
 <h4 class="atx" id="response-body-3">Response body</h4>
 <pre><code class="fenced-code-block language-shell"><span class="token function">curl</span> -s http://localhost:<span class="token variable">${PORT}</span>/app/country/</code></pre>
 <h4 class="atx" id="expected-output-example-2">Expected Output (Example)</h4>
@@ -1342,9 +1404,8 @@ $ <span class="token function">npm</span> <span class="token function">install</
                     Today Deaths: 0
                     Total Recovered: 98236954
                     Today Recovered: 0</code></pre>
-<h3 class="atx" id="-7"></h3>
 <h3 class="atx" id="appcountryyesterday">/app/country/yesterday/</h3>
-<p>It responds all <u>yesterday</u> covid data for a specifed country. </p>
+<p>It responds all <u>yesterday</u> covid data for a specifed country.</p>
 <p><strong>Required</strong>: Use <code>--c &lt;country&gt;</code> to specify a country.</p>
 <h4 class="atx" id="response-body-4">Response body</h4>
 <pre><code class="fenced-code-block language-shell"><span class="token function">curl</span> -s http://localhost:<span class="token variable">${PORT}</span>/app/country/yesterday</code></pre>
@@ -1359,9 +1420,8 @@ $ <span class="token function">npm</span> <span class="token function">install</
                     Yesterday Deaths: 0
                     Total Recovered: 23747479
                     Yesterday Recovered: 2624              </code></pre>
-<h3 class="atx" id="-8"></h3>
 <h3 class="atx" id="appstate">/app/state/</h3>
-<p>It responds the covid data for specified state in United States. </p>
+<p>It responds the covid data for specified state in United States.</p>
 <p><strong>Required</strong>: Use <code>--s &lt;state&gt;</code> to specify a state.</p>
 <h4 class="atx" id="response-body-5">Response body</h4>
 <pre><code class="fenced-code-block language-shell"><span class="token function">curl</span> -s http://localhost:<span class="token variable">${PORT}</span>/app/state/</code></pre>
@@ -1376,7 +1436,7 @@ $ <span class="token function">npm</span> <span class="token function">install</
                     Today Deaths: 0
                     Total Recovered: 0</code></pre>
 <h3 class="atx" id="appstateyesterday">/app/state/yesterday/</h3>
-<p>It responds all the <u>yesterday</u> covid data for specified state in United States. </p>
+<p>It responds all the <u>yesterday</u> covid data for specified state in United States.</p>
 <p><strong>Required</strong>: Use <code>--s &lt;state&gt;</code> to specify a state.</p>
 <h4 class="atx" id="response-body-6">Response body</h4>
 <pre><code class="fenced-code-block language-shell"><span class="token function">curl</span> -s http://localhost:5000/app/state/yesterday/</code></pre>
@@ -1390,10 +1450,9 @@ $ <span class="token function">npm</span> <span class="token function">install</
                     Total Deaths: 97515
                     Yesterday Deaths: 14
                     Total Recovered: 0                 </code></pre>
-<h3 class="atx" id="-9"></h3>
 <h3 class="atx" id="appglobalhistorical">/app/global/historical/</h3>
-<p>It responds the historical global data for covid. </p>
-<p><strong>Optional</strong>: Use <code>--d &lt;day&gt;</code> to specify number of days of historical data. The maximum days for this endpoint is <code>90</code> days. </p>
+<p>It responds the historical global data for covid.</p>
+<p><strong>Optional</strong>: Use <code>--d &lt;day&gt;</code> to specify number of days of historical data. The maximum days for this endpoint is <code>90</code> days.</p>
 <h4 class="atx" id="response-body-7">Response body</h4>
 <pre><code class="fenced-code-block language-shell"><span class="token function">curl</span> -s http://localhost:<span class="token variable">${PORT}</span>/app/global/historical/</code></pre>
 <h4 class="atx" id="expected-output-example-6">Expected Output (Example)</h4>
@@ -1428,7 +1487,6 @@ Request Time: Sat, 03 Dec 2022 03:36:15 GMT
         "12/1/22": 0
     }
 }</code></pre>
-<h3 class="atx" id="-10"></h3>
 <h3 class="atx" id="appcountryhistorical">/app/country/historical/</h3>
 <p>It responds the historical covid data for a specified country.</p>
 <p><strong>Required</strong>: Use <code>--c &lt;country&gt;</code> to specify a country.</p>
@@ -1484,8 +1542,91 @@ Request Time: Sat, 03 Dec 2022 03:45:54 GMT
         }
     }
 }</code></pre>
-<h3 class="atx" id="-11"></h3>
-<h3 class="atx" id="tests">Tests</h3>
+<h3 class="atx" id="applogs">/app/logs/</h3>
+<p>It responds the latest 10 logs in the log table from the database.</p>
+<h4 class="atx" id="response-body-9">Response body</h4>
+<pre><code class="fenced-code-block language-shell"><span class="token function">curl</span> -s http://localhost:<span class="token variable">${PORT}</span>/app/logs/</code></pre>
+<h4 class="atx" id="expected-output-example-8">Expected Output (Example)</h4>
+<pre><code class="fenced-code-block">[
+    {
+        "id": 12,
+        "time": "Thu, 08 Dec 2022 05:11:55 GMT",
+        "status": "success",
+        "endpoint": "/app/global/",
+        "detail": "json flag"
+    },
+    {
+        "id": 11,
+        "time": "Thu, 08 Dec 2022 05:11:44 GMT",
+        "status": "success",
+        "endpoint": "/app/global/",
+        "detail": "no json flag"
+    },
+    {
+        "id": 10,
+        "time": "Thu, 08 Dec 2022 05:11:33 GMT",
+        "status": "success",
+        "endpoint": "/app/global/",
+        "detail": "no json flag"
+    },
+    {
+        "id": 9,
+        "time": "Thu, 08 Dec 2022 05:10:28 GMT",
+        "status": "success",
+        "endpoint": "/app/global/",
+        "detail": "no json flag"
+    },
+    {
+        "id": 8,
+        "time": "Thu, 08 Dec 2022 05:10:14 GMT",
+        "status": "success",
+        "endpoint": "/app/global/",
+        "detail": "json flag"
+    },
+    {
+        "id": 7,
+        "time": "Thu, 08 Dec 2022 05:10:03 GMT",
+        "status": "success",
+        "endpoint": "/app/country/",
+        "detail": "json flag"
+    },
+    {
+        "id": 6,
+        "time": "Thu, 08 Dec 2022 05:09:49 GMT",
+        "status": "success",
+        "endpoint": "/app/global/",
+        "detail": "json flag"
+    },
+    {
+        "id": 5,
+        "time": "Thu, 08 Dec 2022 04:31:17 GMT",
+        "status": "success",
+        "endpoint": "/app/logs/",
+        "detail": "dafault as json style"
+    },
+    {
+        "id": 4,
+        "time": "Thu, 08 Dec 2022 04:31:07 GMT",
+        "status": "failure",
+        "endpoint": "/app/logs/clear/",
+        "detail": "500 Internal server: error when truncating logs from log database."
+    },
+    {
+        "id": 3,
+        "time": "Thu, 08 Dec 2022 04:30:59 GMT",
+        "status": "success",
+        "endpoint": "/app/logs/",
+        "detail": "dafault as json style"
+    }
+]</code></pre>
+<h3 class="atx" id="applogsclear">/app/logs/clear/</h3>
+<p>It responds whether it successfully truncate/clear the table.</p>
+<h4 class="atx" id="response-body-10">Response body</h4>
+<pre><code class="fenced-code-block language-shell"><span class="token function">curl</span> -s http://localhost:<span class="token variable">${PORT}</span>/app/logs/clear/</code></pre>
+<h3 class="atx" id="expected-output-1">Expected Output</h3>
+<pre><code class="fenced-code-block">Successfully truncated the log table in the database.</code></pre>
+<h2 class="atx" id="tests">Tests</h2>
+<hr>
 <p>In this part of documentation, tests in the terminal will be shown. In order to start checking covid cases by API, you need to start the server also in your argument.</p>
 <h4 class="atx" id="an-example-of-terminal-by-calling-appcountryhistorical-api-endpoints">An example of terminal by calling <code>/app/country/historical</code> API endpoints</h4>
 <pre><code class="fenced-code-block language-shell">$ <span class="token assign-left variable">PORT</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">shuf</span> -i <span class="token number">2000</span>-65535 -n <span class="token number">1</span><span class="token variable">)</span></span>"</span><span class="token punctuation">;</span> <span class="token punctuation">(</span>timeout --signal<span class="token operator">=</span>SIGINT <span class="token number">5</span> <span class="token function">node</span> server.js --port<span class="token operator">=</span><span class="token variable">$PORT</span> --d <span class="token number">7</span> --c <span class="token string">"France"</span> --j<span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token function">sleep</span> 1s <span class="token operator">&amp;&amp;</span> <span class="token function">curl</span> -s http://localhost:<span class="token variable">${PORT}</span>/app/country/historical <span class="token operator">&amp;&amp;</span> <span class="token function">sleep</span> 5s</code></pre>
@@ -1503,7 +1644,7 @@ $ <span class="token assign-left variable">PORT</span><span class="token operato
 </li>
 <li><p>state: <code>--s &lt;state&gt;</code></p>
 </li>
-<li><p>Stringnify Json result (All existing API endpoints except <code>/app/</code> supports this): <code>--j</code></p>
+<li><p>Stringify Json result (All existing API endpoints except <code>/app/</code> supports this): <code>--j</code></p>
 </li>
 </ul>
 <pre><code class="fenced-code-block language-shell"><span class="token comment"># flags should be added in this part of argument</span>
@@ -1515,8 +1656,7 @@ $ <span class="token assign-left variable">PORT</span><span class="token operato
 <pre><code class="fenced-code-block language-shell"><span class="token comment"># sleep for 5 seconds after finishing the result</span>
 <span class="token function">sleep</span> 5s</code></pre>
 <h3 class="atx" id="json-result">JSON Result</h3>
-<p>If a <code>--j</code> flag is given in the shell terminal input, the result will be a stringnified JSON.</p>
-<h4 class="atx" id="-12"></h4>
+<p>If a <code>--j</code> flag is given in the shell terminal input, the result will be a stringified JSON.</p>
 <h4 class="atx" id="success">Success</h4>
 <p>On success, an example JSON like this would be returned (Example of "United States" yesterday covid data):</p>
 <pre><code class="fenced-code-block">{
@@ -1551,21 +1691,48 @@ $ <span class="token assign-left variable">PORT</span><span class="token operato
     "recoveredPerOneMillion": 293415.2,
     "criticalPerOneMillion": 10.44
 }</code></pre>
-<h4 class="atx" id="-13"></h4>
 <h4 class="atx" id="error">Error</h4>
 <p>If there is a missing value error for a <strong>required flag</strong> (e.g. use country specified API without giving a country flag), <strong>this will not pass the validation step</strong>. Therefore, it will not make this API call to disease.sh database to decrease unnecessary traffic. Expected return:</p>
 <pre><code class="fenced-code-block">400 Bad Request
 There is no specified country/region found in your input.</code></pre>
-<p>If the flags are all correct but the value cannot be accepted by disease.sh database, then, there will be a <code>400 Bad Request</code> and a error message stringnified JSON returned. Expected return example:</p>
+<p>If the flags are all correct but the value cannot be accepted by disease.sh database, then, there will be a <code>400 Bad Request</code> and a error message stringified JSON returned. Expected return example:</p>
 <pre><code class="fenced-code-block">400 Bad Request
 Country/region "United States1" not found or doesn't have any cases.
 {
     "message": "Country not found or doesn't have any cases"
 }</code></pre>
-<p>If there is an error when extracting data from disease.sh in <code>.then()</code> (this could be a disease.sh database issue or network issue), there will be a <code>500 Internal Server Error</code> given. <strong>This will not return a stringnified JSON. Also, this rarely happens.</strong> Expected return:</p>
+<p>If there is an error when extracting data from disease.sh in <code>.then()</code> (this could be a disease.sh database issue or network issue), there will be a <code>500 Internal Server Error</code> given. <strong>This will not return a stringified JSON. Also, this rarely happens.</strong> Expected return:</p>
 <pre><code class="fenced-code-block">500 Internal Server Error
 There is an error occured in the server when extracting data. Please try again later.</code></pre>
-<h1 class="atx" id="-14"></h1>
+<h2 class="atx" id="database">Database</h2>
+<hr>
+<p>In this project, sqlite3 is used as its database. The program uses "better-sqlite3" npm package to interact with the database. Currently, the server endpoints can record its log into the sqlite3 database (log table).</p>
+<h3 class="atx" id="structure-of-the-table-for-log">Structure of the table for log</h3>
+<p>The structure of table for log (log table) has 5 columns. Therefore, a record has:</p>
+<ul>
+<li><p><code>id</code> : unique identifier for different logs. It is the primary key of the database, and it is autoincreamenting.</p>
+</li>
+<li><p><code>time</code>: the UTC time when this log is generated to database.</p>
+</li>
+<li><p><code>status</code>: the status (success/failure) for the api endpoints which generates this record.</p>
+</li>
+<li><p><code>endpoint</code>: the endpoint that is used when this record is generated.</p>
+</li>
+<li><p><code>detail</code>: details for this log (input flags, error explanation if failure)</p>
+</li>
+</ul>
+<p>Table setup:</p>
+<pre><code class="fenced-code-block language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> backendlog <span class="token punctuation">(</span>
+    id <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
+    <span class="token keyword">time</span> <span class="token keyword">TEXT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token keyword">status</span> <span class="token keyword">TEXT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    endpoint <span class="token keyword">TEXT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    detail <span class="token keyword">TEXT</span>
+<span class="token punctuation">)</span></code></pre>
+<h3 class="atx" id="how-database-works">How database works</h3>
+<p>Every time when there is a endpoint (including non-existent) is used, there will always be a log to the database whether the execution is successful or not. And the log will include the status information of this execution.</p>
+<p>View logs needs <code>/app/logs/</code> endpoint, though it only shows 10 latest logs for better readalibility.</p>
+<p>Clear all existing logs in the table needs <code>/app/logs/clear/</code> endpoint. After the clear/truncate, the autoincrementing primary key <code>id</code> is also set back to <code>1</code> automatically.</p>
 <h1 class="atx" id="projects-link">Projects Link</h1>
 <p>Here is the link to this project on Github: <a href="https://github.com/comp426-2022-fall/a99-Team-33">Github Link</a></p>
 </article>
